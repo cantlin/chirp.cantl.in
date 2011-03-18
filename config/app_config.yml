@@ -1,0 +1,21 @@
+# Application specific values available anywhere
+# Loaded in /config/initializers/load_app_config.rb
+
+# global:
+ 
+site_display_name: chirp.cantl.in
+default_title: chirp.cantl.in
+
+twitter_consumer_key: y58FhMZGiC9xKyARZO1bw
+twitter_consumer_secret: EIHMEsIVCOAYanzmBSTB3jyLEDlOkPDpNuzuQ2BV0
+twitter_api_uri: http://api.twitter.com # Omit trailing slash
+twitter_oauth_endpoint_uri: http://api.twitter.com # Omit trailing slash
+
+development:
+  twitter_callback: http://localhost:3001/
+
+test:
+  twitter_callback: http://localhost:3001/
+
+production:
+  twitter_callback: http://chirp.cantl.in/

@@ -1,0 +1,12 @@
+require 'spec_helper'
+
+describe SessionsController
+  
+  describe "GET 'new'" do
+    it "should redirect" do
+      get 'new'
+      response.should be_redirect
+    end
+  end
+
+end

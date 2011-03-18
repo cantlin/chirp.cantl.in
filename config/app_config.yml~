@@ -1,0 +1,14 @@
+global:
+  site_display_name: chirp.cantl.in
+  default_title: chirp.cantl.in
+  twitter_consumer_key: y58FhMZGiC9xKyARZO1bw
+  twitter_consumer_secret: EIHMEsIVCOAYanzmBSTB3jyLEDlOkPDpNuzuQ2BV0
+
+development:
+  twitter_callback: http://localhost:3001/
+
+test:
+  twitter_callback: http://localhost:3001/
+
+production:
+  twitter_callback: http://chirp.cantl.in/

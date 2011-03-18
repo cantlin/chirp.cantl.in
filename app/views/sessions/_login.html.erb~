@@ -1,0 +1,6 @@
+<div class="login panel">
+	<h2><%= CONFIG_GLOBAL['site_display_name'] %></h2>
+	<div class="content">
+		<%= link_to 'Sign in with Twitter >>', new_session_path, :id => 'login', :'data-popup' => 'true' %>
+	</div>
+</div>
