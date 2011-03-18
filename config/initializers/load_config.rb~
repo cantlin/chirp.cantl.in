@@ -1,2 +1,0 @@
-CONFIG_GLOBAL = YAML.load_file("#{RAILS_ROOT}/config/chirp.yml")['global']
-CONFIG_ENV = YAML.load_file("#{RAILS_ROOT}/config/chirp.yml")[RAILS_ENV]
