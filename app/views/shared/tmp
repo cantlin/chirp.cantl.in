@@ -1,0 +1,12 @@
+set
+
+cookie id = 1
+cookie salt = md5(1 + secret salt)
+
+get
+
+if cookie salt == md5(cookie id + secret salt)
+   # sign in
+else
+   # destroy_session
+   # redirect_to new_session_path

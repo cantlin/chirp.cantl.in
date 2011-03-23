@@ -1,0 +1,7 @@
+pirate:
+  site_name: yarr.cantl.in
+
+  login_submit: Shiver me Twimbers!
+
+  error_unexpected: Yarr matey, this application's going down faster than Whitney Houston on a line of coke.
+  error_auth: Might be you missed the sign said "NO LANDLUBBERS!"

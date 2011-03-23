@@ -1,0 +1,9 @@
+<% content_for :title do I18n.t(:error_page_title) end %>
+<% if @user.errors.any? %>
+<p class="error-help">Sorry, <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</p>
+<ul>
+<% @user.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>

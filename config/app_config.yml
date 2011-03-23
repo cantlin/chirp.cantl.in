@@ -6,16 +6,16 @@
 site_display_name: chirp.cantl.in
 default_title: chirp.cantl.in
 
-twitter_consumer_key: y58FhMZGiC9xKyARZO1bw
-twitter_consumer_secret: EIHMEsIVCOAYanzmBSTB3jyLEDlOkPDpNuzuQ2BV0
+twitter_consumer_key: kMHmlN085Y6n4NMK45DpAw
+twitter_consumer_secret: ePBglnJcHHlEmTH907pJRBkqOyMai0l2RVQ8kFwmc
 twitter_api_uri: http://api.twitter.com # Omit trailing slash
 twitter_oauth_endpoint_uri: http://api.twitter.com # Omit trailing slash
 
 development:
-  twitter_callback: http://localhost:3001/
+  twitter_callback_uri: http://localhost:3001/callback
 
 test:
-  twitter_callback: http://localhost:3001/
+  twitter_callback_uri: http://localhost:3001/callback
 
 production:
-  twitter_callback: http://chirp.cantl.in/
+  twitter_callback_uri: http://chirp.cantl.in/callback

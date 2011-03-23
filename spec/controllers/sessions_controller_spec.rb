@@ -10,4 +10,15 @@ describe SessionsController do
     end
   end # GET new
 
+  describe "GET 'callback'" do
+    it 'should error without params' do
+      get 'callback'
+      response.should render_template('shared/error')
+    end
+    it 'should error with invalid params' do
+      get 'callback', {:oauth_verifier => '1', :oauth_token => '1'}
+      response.should render_template('shared/error')
+    end
+  end # GET callback
+
 end

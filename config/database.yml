@@ -1,8 +1,9 @@
 development:
-    adapter: sqlite3
-    database: db/development.sqlite3
-    pool: 5
-    timeout: 5000
+    adapter: mysql2
+    encoding: utf8
+    database: chirp_development
+    password:
+    socket: /tmp/mysql.sock
 
 test:
     adapter: sqlite3
