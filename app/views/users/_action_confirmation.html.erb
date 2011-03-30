@@ -1,0 +1,3 @@
+<div id="unfollow-confirmation">
+You unfollowed <%= raw comma_seperated_usernames @unfollowed %>. You can <a href="/users/update/?follow=<%= @unfollowed.join('+') %>">undo</a> this action.
+</div>

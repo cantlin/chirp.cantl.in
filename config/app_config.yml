@@ -1,15 +1,23 @@
 # Application specific values available anywhere
 # Loaded in /config/initializers/load_app_config.rb
 
-# global:
- 
 site_display_name: chirp.cantl.in
 default_title: chirp.cantl.in
 
 twitter_consumer_key: kMHmlN085Y6n4NMK45DpAw
 twitter_consumer_secret: ePBglnJcHHlEmTH907pJRBkqOyMai0l2RVQ8kFwmc
-twitter_api_uri: http://api.twitter.com # Omit trailing slash
-twitter_oauth_endpoint_uri: http://api.twitter.com # Omit trailing slash
+twitter_request_uri: http://api.twitter.com # Omit trailing slash
+twitter_oauth_endpoint: /oauth/authenticate # 'Sign in with Twitter'
+# twitter_oauth_endpoint: /oauth/authorize # Regular OAuth
+
+twitter_method_paths:
+  verify_credentials: /1/account/verify_credentials.json
+  get_following: /1/statuses/friends.json
+  get_followed_by: /1/statuses/followers.json
+  unfollow: /1/friendships/destroy.json
+  follow: /1/friendships/create.json
+
+# Rails.env
 
 development:
   twitter_callback_uri: http://localhost:3001/callback

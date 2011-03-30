@@ -1,18 +1,21 @@
 class ApplicationController < ActionController::Base  
-  before_filter :set_locale
   protect_from_forgery
+  before_filter :set_locale
+  helper_method :current_user
+  include SessionsHelper
 
-  def oauth_consumer
-    # http://oauth.rubyforge.org/rdoc/classes/OAuth/Consumer.html
-    OAuth::Consumer.new(CONFIG['twitter_consumer_key'], CONFIG['twitter_consumer_secret'], {
-      :site => CONFIG['twitter_api_uri'],
-      :request_endpoint => CONFIG['twitter_oauth_endpoint_uri'],
-      :sign_in => true
-    })
-  end
-  
   def set_locale
     I18n.locale = params[:locale]
+  end
+
+  private
+
+  def current_user
+    @current_user ||= User.from_cookie(*cookies.signed[:remember_token]) if cookies.signed[:remember_token]
+  end
+
+  def twitter_is_down
+    render 'twitter is down'
   end
 
 end

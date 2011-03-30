@@ -1,10 +1,13 @@
 Chirp::Application.routes.draw do
-  
-  root :to => "home#show"
- 
+
+  get 'login' => 'sessions#new', :as => 'log_in'
+  get 'logout' => 'sessions#destroy', :as => 'log_out'
+  get 'callback' => 'users#new', :as => 'callback'
+
+  root :to => "users#update"
+
   resources :sessions, :only => [:new, :create, :destroy]
-    match '/login',  :to => 'sessions#new'
-    match '/logout', :to => 'sessions#destroy'
-    match '/callback', :to => 'sessions#callback'
+  resources :users
+    match "/users/update/" => "users#update"
     
 end

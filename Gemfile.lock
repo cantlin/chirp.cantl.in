@@ -29,6 +29,7 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.9)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
@@ -42,6 +43,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcache-client (1.8.5)
     mime-types (1.16)
     mysql2 (0.2.6)
     nokogiri (1.4.4)
@@ -93,7 +95,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   jquery-rails (>= 0.2.6)
+  memcache-client
   mysql2
   oauth
   rails (= 3.0.5)

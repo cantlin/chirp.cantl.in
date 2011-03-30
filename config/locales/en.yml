@@ -5,6 +5,10 @@ en:
   site_name: chirp.cantl.in
 
   login_submit: Sign in with Twitter
+  log_out: Log out
+  last_visit: Your last visit was
+  ago: ago
+  greeting: Hello,
 
   error_unexpected: Sorry, something really unexpected happened.
   error_auth: Sorry, there was a problem authenticating your session. Please try again.

@@ -1,0 +1,23 @@
+<% @i ||= 1
+if(followed_user_counter % 20 == 0)
+  if(followed_user_counter != 0) %>
+   </div>
+  <% end %>
+<div class="page num<%= @i %>">
+<% @i+=1
+end %>
+<div class="followed-user <%= cycle('odd odd-row', 'even odd-row', 'odd even-row', 'even even-row') %><% if(followed_user_counter > 21) %> hidden<% end %>" data-deselectable="true">
+  <img src="<%= followed_user['image'] %>" />
+  <div class="inner">
+    <h4><%= link_to_twitter_profile followed_user['screen_name'] %> <%# followed_user['name'] %></h4>
+    <input type="checkbox" name="<%= followed_user['screen_name'] %>" value="1" checked="checked" />
+<!--    <p>
+      <%# followed_user['name'] %><%# if !followed_user['location'].blank? %>, <%# followed_user['location'] %><%# end %>
+   </p> -->
+   <% if !followed_user['status'].nil? %>
+     <p class="tweet">
+       "<%= truncate(followed_user['status'], :length => 115) %>"
+     </p>
+  <% end %>
+  </div>
+</div>

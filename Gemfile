@@ -1,12 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
-# gem 'sqlite3'
 gem 'mysql2'
 gem 'jquery-rails', '>= 0.2.6'
-# gem 'i18n'
+
 gem 'oauth'
 require 'oauth/consumer'
+gem 'memcache-client'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 group :development do
   gem 'rspec-rails', '2.5.0'

@@ -1,0 +1,3 @@
+<div id="nav">
+  <%=t :greeting %> <%= link_to_twitter_profile @current_user.screen_name %>. <%=t :last_visit %> <%= time_ago_in_words(@current_user.last_login) %> <%=t :ago %>. <%= link_to I18n.t(:log_out), '/logout' %>.
+</div>

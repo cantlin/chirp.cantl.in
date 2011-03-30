@@ -1,6 +1,0 @@
-<% if session['access_token'].nil? %>
-	<%= render 'sessions/login' %>
-<% else %>
-	<h1>You're logged in, sort of!</h1>
-	<%= link_to 'Log out', :controller => 'sessions', :action => 'destroy' %>
-<% end %>
