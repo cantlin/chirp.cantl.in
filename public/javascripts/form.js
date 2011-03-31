@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	$('div[data-deselectable]').click(function() {
 		var opacity = ($(this).css('opacity') == '0.5') ? '1' : '0.5';
-		$(this).fadeTo('fast', opacity);
+		$(this).fadeTo('fast', opacity).toggleClass('deselected');
 		var checkbox = $(this).find('input[type="checkbox"]').first();
 		checkbox.attr('checked', !checkbox.attr('checked'));
 		var usersValue = form.find('input[name="users"]').attr('value');

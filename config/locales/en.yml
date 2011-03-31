@@ -1,9 +1,5 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   site_name: chirp.cantl.in
-
   login_submit: Sign in with Twitter
   log_out: Log out
   last_visit: Your last visit was
@@ -13,3 +9,15 @@ en:
   error_unexpected: Sorry, something really unexpected happened.
   error_auth: Sorry, there was a problem authenticating your session. Please try again.
   error_page_title: Error
+
+  new_session_advice: Ready to unfollow some fools? Click a checkbox to get started.
+  dismiss_this: %{link} this.
+  dismiss_link_text: dismiss
+  undo_or_dismiss_this: You can %{undo_link} this action, or %{dismiss_link} this message.
+  undo_link_text: undo
+  save: Click here to save your changes
+  you_acted: You %{action}
+  followed: followed
+  unfollowed: unfollowed
+  next_page: Next page
+  last_page: Last page

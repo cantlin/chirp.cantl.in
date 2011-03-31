@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+  end
+
+  def create
     sign_out if signed_in?
     request_token = oauth_consumer.get_request_token(:oauth_callback => CONFIG[Rails.env]['twitter_callback_uri'])
     session['request_token'] = request_token.token

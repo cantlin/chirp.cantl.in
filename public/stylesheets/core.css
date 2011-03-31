@@ -134,6 +134,14 @@ border-color:#ddd;
   margin:0;
   padding:2px 0 0px 0;
 }
+.followed-user.deselected h4 a {
+-webkit-transition: all 1s ease-in-out;
+-moz-transition: all 1s ease-in-out;
+-o-transition: all 1s ease-in-out;
+-webkit-transition: all 1s ease-in-out;
+transition: all 1s ease-in-out;
+color:#999;
+}
 .followed-user input[type="checkbox"] {
     position:absolute;
     right:8px;

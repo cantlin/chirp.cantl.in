@@ -1,3 +1,0 @@
-<div class="system-message success">
-  <p>You <%= params[:method] %>ed <%= raw comma_seperated_usernames @users_acted_on %>. You can <a href="?method=<%= (params[:method] == 'follow') ? 'unfollow' : 'follow' %>&users=<%= @users_acted_on.join('+') %>">undo</a> this action, or <a href="" data-destroy="system-message">dismiss</a> this message.</p>
-</div>

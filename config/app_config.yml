@@ -20,10 +20,13 @@ twitter_method_paths:
 # Rails.env
 
 development:
+  root_uri: http://localhost:3001/
   twitter_callback_uri: http://localhost:3001/callback
 
 test:
+  root_uri: http://localhost:3001/
   twitter_callback_uri: http://localhost:3001/callback
 
 production:
+  root_uri: http://chirp.cantl.in/
   twitter_callback_uri: http://chirp.cantl.in/callback

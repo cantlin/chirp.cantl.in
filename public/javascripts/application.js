@@ -18,6 +18,7 @@ $(document).ready(function() {
 			});
 		});
 		e.preventDefault();
+		document.cookie='dismissed_' + destroyClass + '=1' ; // huge hack, should load() a controller action
         });
 	
 });
