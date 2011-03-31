@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include SessionsHelper
-  attr_accessible
+  attr_accessible :access_token, :access_token_secret
 #  rescue_from JSON::ParseError, :with => :something
 
   validates :access_token,
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
     begin
       JSON.parse(result.body)
     rescue Exception => e
-      raise 'Twitter is down!' and return
+      #
     end
   end
 
