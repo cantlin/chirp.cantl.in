@@ -1,3 +1,3 @@
 <div class="system-message success">
-  <p>You <%= t("#{params[:method]}ed") %> <%= raw comma_seperated_usernames @users_acted_on %>. You can <a href="?method=<%= (params[:method] == 'follow') ? 'unfollow' : 'follow' %>&users=<%= @users_acted_on.join('+') %>">undo</a> this action, or <a href="" data-destroy="system-message">dismiss</a> this message.</p>
+  <p><%= t(:you_acted, :action => t("#{params[:method]}ed") %> <%= raw comma_seperated_usernames @users_acted_on %>. <%= raw t(:undo_or_dismiss_this, :undo_link => link_to(t(:undo_link_text), undo_href(@users_acted_on)), :dismiss_link => link_to(t(:dismiss_link_sentence_text), '', :'data-destroy' => "system-message.success")) %>
 </div>
