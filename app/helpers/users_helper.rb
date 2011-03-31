@@ -5,7 +5,7 @@ module UsersHelper
   end
 
    def comma_seperated_usernames(array)
-#   return array unless array.is_a? Array # best line ever
+    # ['foo', 'bar', 'foobar'] becomes 'foo, bar and foobar'
     array.collect{|v| link_to_twitter_profile v}.join(', ').gsub(/,([^,]*)$/," and \\1")
   end
 

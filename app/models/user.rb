@@ -32,6 +32,21 @@ class User < ActiveRecord::Base
 
   def following(cursor = -1)
     Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
+        result = twitter_request_authenticated('get_following', {:cursor => cursor})
+        parse_body(result)['users'].map do |user|              
+          { :twitter_id => user['id'],
+            :screen_name => user['screen_name'],
+            :name => user['name'],
+            :image => user['profile_image_url'],
+            :location => user['location'],
+            :status => user['status'] ? user['status']['text'] : nil }
+        end
+      end
+    end
+  end
+
+  def following(cursor = -1)
+    Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
       result = twitter_request_authenticated('get_following', {:cursor => cursor})
       followed_users = parse_body(result)['users']
       twitter_user_list = []
