@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
             :image => user['profile_image_url'],
             :location => user['location'],
             :status => user['status'] ? user['status']['text'] : nil }
-        end
       end
     end
   end
