@@ -10,7 +10,7 @@ module UsersHelper
   end
 
   def undo_href(method, names)
-    href = '?'
+    href = '?method='
     href += (method == 'follow') ? 'unfollow' : 'follow'
     href += '&users='
     href += names.join('+')

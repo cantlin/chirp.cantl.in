@@ -6,7 +6,7 @@ module SessionsHelper
 
   def sign_out
     cookies.delete :remember_token
-    cookies.delete :dismissed
+    cookies.delete 'dismissed_system-message.welcome' # hack
     reset_session
   end
 
