@@ -109,6 +109,7 @@ border-color:#ddd;
 .followed-user img {
   border:5px solid #ebebeb;
   border-radius:5px;
+  -moz-border-radius:5px;
   float:left;
   margin-right:6px;
   margin-left:5px;
@@ -176,6 +177,7 @@ padding:5px 7px 4px 8px;
 margin:0;
 border:1px solid #64A044;
 border-radius:5px;
+-moz-border-radius:5px;
 background-color:#84D159;
 color:#FFF;
 text-shadow:1px 1px #73b84d;
@@ -207,11 +209,10 @@ background-color:#2299CC;
 border:1px solid #1e81ac;
 text-shadow:1px 1px solid #1e81ac;
 color:#FFF;
-border-radius:5px;
+border-radius:5px; -moz-border-radius:5px;
 }
 #wrap .success {
 border:1px solid #64A044;
-border-radius:5px;
 background-color:#84D159;
 color:#FFF;
 text-shadow:1px 1px #73b84d;
