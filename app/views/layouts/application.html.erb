@@ -15,11 +15,19 @@
 <div id="head">
 <%= yield :header %>
 <h2><%= link_to t(:site_name), root_url, :id => 'home' %></h2>
+<% if @current_user -%>
+  <%= render 'users/current_user' %>
+<% end -%>
 </div>
-<% flash.each do |key, value| %>
-<div class="flash <%= key %>"><%= value %></div>
-<% end %>
+<% if !@users_acted_on.nil? -%>
+  <%= render :partial => 'action_confirmation' %>
+<% end -%>
 <%= yield %>
+<br style="clear:both;" />
+<form accept-charset="UTF-8" id="search" name="search" method="post" action="<%= url_for search_path %>">
+<input type="text" name="query" />
+<input type="submit" name="submit-search" value="Search" />
+</form>
 </div>
 <%= yield :inline_js %></body>
 </html>

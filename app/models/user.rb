@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
-  include SessionsHelper
+  include RequestsHelper
   attr_accessible :access_token, :access_token_secret
-#  rescue_from JSON::ParseError, :with => :something
 
   validates :access_token,
     :presence => true,
@@ -32,30 +31,16 @@ class User < ActiveRecord::Base
 
   def following(cursor = -1)
     Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
-        result = twitter_request_authenticated('get_following', {:cursor => cursor})
-        parse_body(result)['users'].map do |user|              
-          { :twitter_id => user['id'],
-            :screen_name => user['screen_name'],
-            :name => user['name'],
-            :image => user['profile_image_url'],
-            :location => user['location'],
-            :status => user['status'] ? user['status']['text'] : nil }
-      end
-    end
-  end
-
-  def following(cursor = -1)
-    Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
       result = twitter_request_authenticated('get_following', {:cursor => cursor})
-      followed_users = parse_body(result)['users']
-      twitter_user_list = []
-      followed_users.each do |user|
-#       this_user = TwitterUser.new(:twitter_id => user['id'], :screen_name => user['screen_name'], :name => user['name'], :image => user['profile_image_url'], :location => user['location'])
-        this_user = {'twitter_id' => user['id'], 'screen_name' => user['screen_name'], 'name' => user['name'], 'image' => user['profile_image_url'], 'location' => user['location']}
-        this_user['status'] = user['status']['text'] unless user['status'].nil?
-        twitter_user_list.push this_user
+      parse_body(result)['users'].map do |user|              
+        { :twitter_id => user['id'],
+          :screen_name => user['screen_name'],
+          :name => user['name'],
+          :image => user['profile_image_url'],
+          :location => user['location'],
+          :following => 1,
+          :status => user['status'] ? user['status']['text'] : nil }
       end
-      twitter_user_list
     end
   end
 
@@ -82,7 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def verify
-    result = twitter_authenticated_request_parsed('verify_credentials')
+    result = parse_body twitter_request_authenticated('verify_credentials')
     (result && result['screen_name']) ? self.screen_name = result['screen_name'] : nil
   end
 
@@ -98,32 +83,18 @@ class User < ActiveRecord::Base
     end
 
   end
-
+  
   private
 
   def twitter_request_authenticated(method_key, params = {}, method = 'get')
-    access_token = OAuth::AccessToken.new(oauth_consumer, self.access_token, self.access_token_secret)
+    @access_token ||= OAuth::AccessToken.new(oauth_consumer, self.access_token, self.access_token_secret)
     method_path = CONFIG['twitter_method_paths'][method_key] # See /config/app_config.yml
-    if(!params.empty?)
-      method_path += '?'
-      params.each do |parameter, value|
-        method_path += "#{parameter}=#{value}&"
-      end
-      method_path.chop!
+    unless params.empty?
+      params.each_with_index {|param, i|
+        method_path += "#{(i == 0) ? '?' : '&'}#{param[0]}=#{param[1]}"
+      }
     end
-    access_token.send(method, method_path)
-  end
-
-  def parse_body(result)
-    begin
-      JSON.parse(result.body)
-    rescue Exception => e
-      #
-    end
-  end
-
-  def twitter_authenticated_request_parsed(method)
-    parse_body(twitter_request_authenticated(method))
+    @access_token.send(method, method_path)
   end
 
 end

@@ -5,11 +5,7 @@
   <%= form_tag save_path, :id => 'update-following-form' %>
 <% end -%>
 <% content_for :header do -%>
-  <%= render 'users/current_user' %>
   <div id="save"><%= submit_tag t(:save) %></div>
-<% end -%>
-<% if !@users_acted_on.nil? -%>
-  <%= render :partial => 'action_confirmation' %>
 <% end -%>
 <% if (cookies['dismissed_system-message.welcome'].nil?) # hack -%>
   <%= render :partial => 'sessions/new_session_message' %>

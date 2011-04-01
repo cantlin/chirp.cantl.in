@@ -10,14 +10,13 @@ en:
   error_auth: Sorry, there was a problem authenticating your session. Please try again.
   error_page_title: Error
 
-  new_session_advice: Ready to unfollow some fools? Click a checkbox to get started.
+  new_session_advice: Welcome. Go ahead and uncheck the boxes of users you no longer wish to follow.
   dismiss_this: %{link} this.
   dismiss_link_text: dismiss
   undo_or_dismiss_this: You can %{undo_link} this action, or %{dismiss_link} this message.
   undo_link_text: undo
   save: Click here to save your changes
-  you_acted: You %{action}
-  followed: followed
-  unfollowed: unfollowed
   next_page: Next page
   last_page: Last page
+  you_unfollowed: Good riddance! You unfollowed
+  you_followed: Hurrah! You followed

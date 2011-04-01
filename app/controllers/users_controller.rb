@@ -17,10 +17,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
-    @users_acted_on = []
-    params[:users].split(' ').each {|screen_name| @users_acted_on.push screen_name unless screen_name.empty?}
-    @user.send(params[:method], @users_acted_on)
+    @user.send(params[:method], params[:user].split(' '))
 
     render 'edit'
   end
