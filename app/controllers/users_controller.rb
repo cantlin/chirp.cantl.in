@@ -12,12 +12,13 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = current_user
+    @users = current_user.following
   end
 
   def update
     @user = current_user
-    @user.send(params[:method], params[:user].split(' '))
+    @users_acted_on = params[:users].split(' ')
+    @user.send(params[:method], @users_acted_on)
 
     render 'edit'
   end

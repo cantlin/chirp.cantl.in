@@ -1,14 +1,1 @@
-<% content_for :js do -%>
-  <%= javascript_include_tag 'form' %>
-<% end -%>
-<% content_for :before_header do -%>
-  <%= form_tag save_path, :id => 'update-following-form' %>
-<% end -%>
-<% content_for :header do -%>
-  <div id="save"><%= submit_tag t(:save) %></div>
-<% end -%>
-<% if (cookies['dismissed_system-message.welcome'].nil?) # hack -%>
-  <%= render :partial => 'sessions/new_session_message' %>
-<% end -%>
-<%= render :partial => 'following_list' %>
-</form>
+<%= render :partial => 'shared/manage_users' %>

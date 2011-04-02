@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><%= [yield(:title), t(:site_name)].reject(&:blank?).join(' - ') %></title>
-<!-- <title><%= "#{yield(:title)} - " unless yield(:title).empty? %><%=t :site_name %></title> -->
-<%= stylesheet_link_tag :all %>
-<%= yield :css %>
-<%= javascript_include_tag :defaults %>
-<%= yield :js %>
-<%= csrf_meta_tag %>
+  <title><%= [yield(:title), t(:site_name)].reject(&:blank?).join(' - ') %></title>
+  <%= stylesheet_link_tag :all %>
+  <%= yield :css %>
+  <%= javascript_include_tag :defaults %>
+  <%= yield :js %>
+  <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="wrap">
-<%= yield :before_header %>
-<div id="head">
-<%= yield :header %>
-<h2><%= link_to t(:site_name), root_url, :id => 'home' %></h2>
-<% if @current_user -%>
-  <%= render 'users/current_user' %>
-<% end -%>
-</div>
-<% if !@users_acted_on.nil? -%>
-  <%= render :partial => 'action_confirmation' %>
-<% end -%>
-<%= yield %>
-<br style="clear:both;" />
-<form accept-charset="UTF-8" id="search" name="search" method="post" action="<%= url_for search_path %>">
-<input type="text" name="query" />
-<input type="submit" name="submit-search" value="Search" />
-</form>
-</div>
-<%= yield :inline_js %></body>
+  <div id="wrap">
+    <%= yield :before_header %>
+    <div id="head">
+      <h2><%= link_to t(:site_name), root_url, :id => 'home' %></h2>
+
+      <%= yield :header %>
+      <% if @current_user -%>
+        <%= render 'users/current_user' %>
+      <% end -%>
+    </div> <!-- /head -->
+    <% if !@users_acted_on.nil? -%>
+      <%= render :partial => 'action_confirmation' %>
+    <% end -%>
+    <%= yield %>
+      <%= form_tag search_path, :id => 'search' %>
+        <input type="text" name="query" />
+        <input type="submit" name="submit-search" value="Search" />
+      </form>
+  </div> <!-- /wrap -->
+  <%= yield :inline_js %>
+</body>
 </html>

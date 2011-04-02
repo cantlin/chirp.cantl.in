@@ -58,7 +58,7 @@ position:relative;
 width:960px;
 overflow:hidden;
 }
-.followed-user {
+.user-checkbox-box {
   width:470px;
   height:65px;
   overflow:hidden;
@@ -68,45 +68,45 @@ overflow:hidden;
   position:relative;
   background-color:#fff;
 }
-.followed-user.odd {
+.user-checkbox-box.odd {
   margin:0 20px 0 0;
 }
-.followed-user.even-row {
+.user-checkbox-box.even-row {
   border-top:1px solid #ebebeb;
   border-bottom:1px solid #ebebeb;
 }
-.followed-user.odd-row {
+.user-checkbox-box.odd-row {
 position:relative;
 bottom:1px;
 margin-top:1px;
 height:66px;
 z-index:2;
 }
-.followed-user .inner {
+.user-checkbox-box .inner {
   width:400px;
  float:left;
 }
-.followed-user:hover {
+.user-checkbox-box:hover {
   background-color:#efefef;
   border-top:1px solid #ddd;
   border-bottom:1px solid #ddd;
 }
-.followed-user.odd-row:hover {
+.user-checkbox-box.odd-row:hover {
   margin-top:0;
   margin-bottom:-3px;
   height:67px;
 }
-.followed-user:hover img {
+.user-checkbox-box:hover img {
 border-color:#ddd;
 }
-#wrap .followed-user a.twitter-profile-link {
+#wrap .user-checkbox-box a.twitter-profile-link {
     color:#2299cc;
 }
-.followed-user p {
+.user-checkbox-box p {
     margin:0;
     padding:0;
 }
-.followed-user img {
+.user-checkbox-box img {
   border:5px solid #ebebeb;
   border-radius:5px;
   -moz-border-radius:5px;
@@ -116,12 +116,12 @@ border-color:#ddd;
   width:48px;
   height:48px;
 }
-.followed-user h4 {
+.user-checkbox-box h4 {
   font-size:1.2em;
   margin:0;
   padding:2px 0 0px 0;
 }
-#wrap .followed-user.deselected h4 a {
+#wrap .user-checkbox-box.deselected h4 a {
 -webkit-transition: all 0.5s ease-in-out;
 -moz-transition: all 0.5s ease-in-out;
 -o-transition: all 0.5s ease-in-out;
@@ -129,7 +129,7 @@ border-color:#ddd;
 transition: all 0.5s ease-in-out;
 color:#999;
 }
-.followed-user input[type="checkbox"] {
+.user-checkbox-box input[type="checkbox"] {
     position:absolute;
     right:8px;
     top:10px;
@@ -156,7 +156,7 @@ h2 {
 .clear {
     clear:both;
 }
-.followed-user p.tweet {
+.user-checkbox-box p.tweet {
 margin:6px 0 0 2px;
 border-left:1px solid  #dedede;
 padding:2px 0 2px 8px;
@@ -256,5 +256,26 @@ color:#000;
 padding-bottom:8px;
 }
 #search {
-padding-top:20px;
+float:left;
+margin:6px 0 0 6px;
+}
+#search input {
+border-radius:5px;
+border:1px solid #ddd;
+background-color:#eee;
+font-size:0.9em;
+font-family:'Arial', 'Helvetica', sans-serif;
+padding:5px 4px;
+color:#2299cc;
+text-shadow:1px 1px #fff;
+}
+#search input[type="text"] {
+color:#000;
+background-color:#fff;
+}
+#search input:hover {
+border-color:#ccc;
+}
+#head h2 {
+float:left;
 }
