@@ -18,8 +18,14 @@ $(document).ready(function() {
 			});
 		});
 		e.preventDefault();
-		document.cookie='dismissed_' + destroyClass + '=1' ; // huge hack, should load() a controller action
+		document.cookie='dismissed_' + destroyClass + '=1' ; // hack city
         });
+
+	$('a[data-submit]').click(function(e) {
+		var form = $('#' + $(this).attr('data-submit'));
+		form.submit();
+		e.preventDefault();
+	});
 	
 });
 

@@ -1,1 +1,23 @@
-<%= render :partial => 'shared/manage_users' %>
+<% content_for :js do -%>
+  <%= javascript_include_tag 'form' %>
+<% end -%>
+<% content_for :before_header do -%>
+  <%= form_tag(unfollow_user_path(@user), :id => 'update-following-form') %>
+<% end -%>
+<% content_for :header do -%>
+  <div id="save"><%= submit_tag t(:save) %></div>
+<% end -%>
+<% if (cookies['dismissed_system-message.welcome'].nil?) # hack -%>
+  <%= render :partial => 'sessions/new_session_message' %>
+<% end -%>
+<div id="update-following">
+<!-- <p>You are following <strong><%= @current_user.following.count %></strong> users. -->
+  <div id="under-head">
+    <a class="next-page" href="" data-page="next"><%=t :next_page %> &raquo;</a>
+    <a class="last-page" href="" data-page="last">&laquo; <%=t :last_page %></a></div>
+    <div id="page-container">
+      <%= render :partial => 'users/user', :collection => @twitter_users %>
+      <br class="clear" />
+    </div> <!-- /page-container -->
+</div> <!-- /update-following -->
+</form>

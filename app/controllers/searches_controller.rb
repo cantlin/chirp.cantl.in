@@ -2,8 +2,9 @@ class SearchesController < ApplicationController
   before_filter :authenticate
 
   def new
+    @user = current_user
     @search = Search.new(:query => params[:query])
-    @users = @search.results
+    @twitter_users = @search.results
   end
 
 end

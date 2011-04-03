@@ -1,0 +1,8 @@
+<div class="system-message success">
+  <%= form_tag follow_user_path(@user), :id => 'undo' do -%>
+  <% @unfollowed_users.each {|user| -%>
+      <input type="hidden" value="user_<%= user %>" value="1" />
+  <% } -%>
+  <p><%= t("you_unfollowed") %> <%= raw comma_seperated_usernames @unfollowed_users %>. <%= raw t(:undo_or_dismiss_this, :undo_link => link_to(t(:undo_link_text), '', 'data-submit' => 'undo'), :dismiss_link => link_to(t(:dismiss_link_text), '', :'data-destroy' => "system-message.success")) %></p>
+  <% end -%>
+</div>

@@ -2,22 +2,22 @@ $(document).ready(function() {
 
 	var form = $('#update-following-form');
 
-	$('div[data-deselectable]', form).click(function(e) {
-		var opacity, checkbox, usersField, usersValue;
+	$('.form-control', form).click(function(e) {
+		var opacity, checkbox;
 
 		opacity = ($(this).css('opacity') == '0.5') ? '1' : '0.5';
-		$(this).fadeTo('fast', opacity).toggleClass('deselected');
 
 		checkbox = $(this).find(':checkbox').first();
+
 		if(e.target.nodeName != 'INPUT')
 		    checkbox.attr('checked', !checkbox.attr('checked'));
+		
+		if(!checkbox.attr('checked'))
+		    $(this).removeClass('selected').addClass('deselected');
+                else
+		    $(this).removeClass('deselected').addClass('selected');
+
 		setDirty(checkbox);
-
-		usersField = $('input[name="users"]', form);
-		usersValue = usersField.attr('value');
-		(!checkbox.attr('checked')) ? usersValue += ' ' + checkbox.attr('name') : usersValue = usersValue.replace(' ' + checkbox.attr('name'), '');
-		usersField.attr('value', usersValue);
-
 		(isDirty(form)) ? fadeSwitch($('#nav'), $('#save')) : fadeSwitch($('#save'), $('#nav')); 	
 	});
 
@@ -25,13 +25,11 @@ $(document).ready(function() {
 
 	var pageContainer = $('#page-container');
 	var pageWidth = $('.page').first().outerWidth(true);
-	var pageNum = (getState()) ? getState() : 1;
+	var pageNum = (getState() && getState() > 0 && getState() <= pagesTotal) ? getState() : 1;
 	var pagesTotal = $('.page').size();
 
 	// init state
 
-	if(pageNum < 0 || pageNum > pagesTotal)
-	    pageNum = 1;
 	if(pageNum > 1) {
 	    initMargin = -1 * ((pageNum * pageWidth) - pageWidth);
 	    pageContainer.css('marginLeft', initMargin);
@@ -60,17 +58,19 @@ $(document).ready(function() {
 });
 
 function setDirty(control) {
-    var key, initVal;
+    var key, keyVal, initVal;
 
     if(control.attr('type') == 'checkbox') {
 	key = 'checked';
-	initVal = control.attr('data-init' + key) == "true"; // boolean for comparison
+	initVal = (control.attr('data-init-' + key) == 'true'); // boolean for comparison
     } else {
 	key = 'value';
-        initVal = control.attr('data-init' + key);
+        initVal = control.attr('data-init-' + key);
     }
 
-    (control.attr(key) !== initVal) ? control.removeAttr('data-dirty') : control.attr('data-dirty', 'true');
+    keyVal = control.attr(key);
+
+    (keyVal == initVal) ? control.removeAttr('data-dirty') : control.attr('data-dirty', 'true');
 };
 
 function isDirty(form) {

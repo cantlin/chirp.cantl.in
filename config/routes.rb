@@ -5,13 +5,15 @@ Chirp::Application.routes.draw do
   get 'oauth' => 'sessions#create', :as => 'oauth'
   get 'callback' => 'users#new', :as => 'callback'
   post 'search' => 'searches#new', :as => 'search'
+  get 'foo' => 'users#foo', :as => 'foo'
+
+  resources :users, :only => [:new, :edit] do
+    member do
+      post 'follow'
+      post 'unfollow'
+    end
+  end
 
   root :to => "users#edit"
-
-  resources :users
-    match "/save/" => "users#update"
-
-  resources :searches
-    match "/search/" => "searches#new"
     
 end

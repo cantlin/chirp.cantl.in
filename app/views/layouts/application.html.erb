@@ -19,14 +19,18 @@
         <%= render 'users/current_user' %>
       <% end -%>
     </div> <!-- /head -->
-    <% if !@users_acted_on.nil? -%>
-      <%= render :partial => 'action_confirmation' %>
+    <% if !@unfollowed_users.nil? -%>
+        <%= render :partial => 'unfollow_confirmation' %>
+    <% end -%>
+    <% if !@followed_users.nil? -%>
+        <%= render :partial => 'follow_confirmation' %>
     <% end -%>
     <%= yield %>
-      <%= form_tag search_path, :id => 'search' %>
+      <%= form_tag search_path, :id => 'search' do -%>
         <input type="text" name="query" />
         <input type="submit" name="submit-search" value="Search" />
       </form>
+      <% end -%>
   </div> <!-- /wrap -->
   <%= yield :inline_js %>
 </body>
