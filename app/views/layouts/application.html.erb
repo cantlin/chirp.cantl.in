@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag :all %>
   <%= yield :css %>
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'form' %>
   <%= yield :js %>
   <%= csrf_meta_tag %>
 </head>
@@ -13,16 +14,15 @@
     <%= yield :before_header %>
     <div id="head">
       <h2><%= link_to t(:site_name), root_url, :id => 'home' %></h2>
-
       <%= yield :header %>
       <% if @current_user -%>
         <%= render 'users/current_user' %>
       <% end -%>
     </div> <!-- /head -->
-    <% if !@unfollowed_users.nil? -%>
+    <% if !params[:unfollow].nil? -%>
         <%= render :partial => 'unfollow_confirmation' %>
     <% end -%>
-    <% if !@followed_users.nil? -%>
+    <% if !params[:follow].nil? -%>
         <%= render :partial => 'follow_confirmation' %>
     <% end -%>
     <%= yield %>

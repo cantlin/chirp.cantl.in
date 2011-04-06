@@ -1,28 +1,11 @@
-This is a simple example application for unfollowing people on Twitter. It's a work in progress.
+This is a simple example application for unfollowing people on Twitter. Play with it at http://chirp.cantl.in.
 
-You can play with it at http://chirp.cantl.in. At this stage it will probably break horribly in anything but Google Chrome.
+There are a couple of things to fix still:
 
-OK things:
-
-  * memcached API requests
-  * only uses the oauth ruby lib, not the oauth-plugin or twitter gems
-  * cute jQuery UI
-  * near-complete i18n
-  * salty cookies (ew)
-
-Things I'm fixing:
-
-  * External Twitter users aren't modelled (i.e. those who have never logged in)
-  * users#update will respond to any arbitrary method (probably with an uncaught NoMethodError)
   * JSON::ParseErrors are not handled (if Twitter goes down, so do we)
   * Users following more than a hundred people won't see them all
 
-Things I probably won't fix for this project:
+Some things probably won't get fixed:
 
   * Tests!
-  * Horrible JS hack for "dismissed" notifications
-  * Unfollowing like a hundred people would, like, probably explode it
-
-Things I'm adding:
-
-  * Search
+  * Vomit inducing hack for "dismissed" notifications

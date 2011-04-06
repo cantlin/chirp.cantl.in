@@ -171,7 +171,11 @@ padding:2px 0 2px 8px;
     background-color:#fff;
     width:960px;
 }
-#save input, a#login {
+#save a {
+position:relative;
+top:6px;
+}
+#save a, a#login {
 /*background:url('../images/icon_save_tiny.png') 94% 4px no-repeat;*/
 padding:5px 7px 4px 8px;
 margin:0;

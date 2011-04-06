@@ -2,22 +2,23 @@ $(document).ready(function() {
 
 	var form = $('#update-following-form');
 
-	$('.form-control', form).click(function(e) {
+	$('.checkbox-control', form).click(function(e) {
 		var opacity, checkbox;
 
 		opacity = ($(this).css('opacity') == '0.5') ? '1' : '0.5';
 
 		checkbox = $(this).find(':checkbox').first();
+		hiddenField = checkbox.next('input[type="hidden"]');
 
 		if(e.target.nodeName != 'INPUT')
 		    checkbox.attr('checked', !checkbox.attr('checked'));
 		
 		if(!checkbox.attr('checked'))
 		    $(this).removeClass('selected').addClass('deselected');
-                else
+		else
 		    $(this).removeClass('deselected').addClass('selected');
 
-		setDirty(checkbox);
+		(setDirty(checkbox)) ? hiddenField.attr('name', hiddenField.attr('data-name')) : hiddenField.removeAttr('name');
 		(isDirty(form)) ? fadeSwitch($('#nav'), $('#save')) : fadeSwitch($('#save'), $('#nav')); 	
 	});
 
@@ -39,6 +40,7 @@ $(document).ready(function() {
 
  	$("a[data-page]").click(function(e) {
 		if($(this).hasClass('disabled')) return false;
+		$(this).blur();
 
  		var action = $(this).attr('data-page');
 		var marginLeft = pageWidth;
@@ -70,7 +72,13 @@ function setDirty(control) {
 
     keyVal = control.attr(key);
 
-    (keyVal == initVal) ? control.removeAttr('data-dirty') : control.attr('data-dirty', 'true');
+    if(keyVal == initVal) {
+	control.removeAttr('data-dirty');
+	return false;
+    } else {
+	control.attr('data-dirty', 'true');
+	return true;
+    }
 };
 
 function isDirty(form) {

@@ -8,11 +8,12 @@ if(user_counter % CONFIG['twitter_users_per_page'] == 0)
 <% 
 @i+=1
 end -%>
-<div class="form-control user-checkbox-box <%= cycle('odd odd-row', 'even odd-row', 'odd even-row', 'even even-row') %> <% if !user[:following].nil? %>selected<% else %>deselected<% end %>" data-deselectable="true">
+<div class="checkbox-control user-checkbox-box <%= cycle('odd odd-row', 'even odd-row', 'odd even-row', 'even even-row') %> <% if !user[:following].nil? %>selected<% else %>deselected<% end %>" data-deselectable="true">
   <img src="<%= user[:image] %>" />
   <div class="inner">
     <h4><%= link_to_twitter_profile user[:screen_name] %></h4>
-    <input type="checkbox" name="user_<%= user[:screen_name] %>" value="1" <% if !user[:following].nil? %>checked="checked" data-init-checked="true"<% else %>data-init-checked="false"<% end %>/>
+    <input type="checkbox" <% if !user[:following].nil? %>checked="checked" data-init-checked="true"<% else %>data-init-checked="false"<% end %>/>
+    <input type="hidden" value="<%= user[:screen_name] %>" data-name="<% if !user[:following].nil? %>unfollow<% else %>follow<% end %>[]" />
    <% if !user[:status].nil? -%>
      <p class="tweet">
        "<%= truncate(user[:status], :length => 115) %>"
