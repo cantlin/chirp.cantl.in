@@ -3,14 +3,12 @@ $(document).ready(function() {
 	var form = $('#update-following-form');
 
 	$('.checkbox-control', form).click(function(e) {
-		var opacity, checkbox;
-
-		opacity = ($(this).css('opacity') == '0.5') ? '1' : '0.5';
+		var checkbox, hiddenField;
 
 		checkbox = $(this).find(':checkbox').first();
-		hiddenField = checkbox.next('input[type="hidden"]');
+		hiddenField = checkbox.next('input[type="hidden"]'); // Do the actual POSTing from a hidden field
 
-		if(e.target.nodeName != 'INPUT')
+		if(e.target.nodeName != 'INPUT') // Let the browser deal with it if they click on the checkbox directly
 		    checkbox.attr('checked', !checkbox.attr('checked'));
 		
 		if(!checkbox.attr('checked'))

@@ -21,14 +21,6 @@ class User < ActiveRecord::Base
     self.last_login = Time.now.utc
   end
 
-  def followed_by
-    twitter_authenticated_request_parsed 'get_followed_by'
-  end
-
-  def followed_by=(value)
-    self.followed_by = value
-  end
-
   def following(cursor = -1)
     Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
       result = twitter_request_authenticated('get_following', {:cursor => cursor})
@@ -54,7 +46,7 @@ class User < ActiveRecord::Base
     else
       twitter_request_authenticated('unfollow', {:screen_name => screen_name}, 'post')
     end
-    Rails.cache.delete("following/#{id}")
+    Rails.cache.delete "following/#{id}"
   end
 
   def follow(screen_name)
@@ -63,7 +55,7 @@ class User < ActiveRecord::Base
     else
       twitter_request_authenticated('follow', {:screen_name => screen_name}, 'post')
     end
-    Rails.cache.delete("following/#{id}")
+    Rails.cache.delete "following/#{id}"
   end
 
   def verify

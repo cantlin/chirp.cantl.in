@@ -9,11 +9,4 @@ module UsersHelper
     array.collect{|v| link_to_twitter_profile v}.join(', ').gsub(/,([^,]*)$/," and \\1")
   end
 
-  def undo_href(method, names)
-    href = '?method='
-    href += (method == 'follow') ? 'unfollow' : 'follow'
-    href += '&users='
-    href += names.join('+')
-  end
-
 end

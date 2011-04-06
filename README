@@ -1,9 +1,8 @@
-This is a simple example application for unfollowing people on Twitter. Play with it at http://chirp.cantl.in.
-
-There are a couple of things to fix still:
+There are a few of things to fix still:
 
   * JSON::ParseErrors are not handled (if Twitter goes down, so do we)
   * Users following more than a hundred people won't see them all
+  * Users followed by the current user show up as unfollowed in search results
 
 Some things probably won't get fixed:
 
