@@ -16,7 +16,7 @@
       <h2><%= link_to t(:site_name), root_url, :id => 'home' %></h2>
       <%= yield :header %>
       <% if @current_user -%>
-        <%= form_tag search_path, :id => 'search' do -%>
+        <%= form_tag search_path, :id => 'search' -%>
           <input type="text" name="query" value="<%= params[:query] %>" />
           <input type="submit" name="submit-search" value="Search" />
         </form>
@@ -30,7 +30,6 @@
         <%= render :partial => 'follow_confirmation' %>
     <% end -%>
     <%= yield %>
-  <% end -%>
   </div> <!-- /wrap -->
   <%= yield :inline_js %>
 </body>
