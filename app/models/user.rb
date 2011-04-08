@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
       until cursor == 0
         result = parse_body twitter_request_authenticated('get_following', {:cursor => cursor})
 
-        twitter_users.concat result['users'].map do |user|              
+        twitter_users.concat((result['users'].map do |user|              
           { :twitter_id => user['id'],
             :screen_name => user['screen_name'],
             :name => user['name'],
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
             :location => user['location'],
             :following => 1,
             :status => user['status'] ? user['status']['text'] : nil }
-        end
+          end))
 
         cursor = result['next_cursor']
       end
