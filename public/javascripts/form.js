@@ -9,7 +9,7 @@ $(document).ready(function() {
 		    return;
 
 		checkbox = $(this).find(':checkbox').first();
-		hiddenField = $('input[type="hidden"]'); // Do the actual POSTing from a hidden field
+		hiddenField = checkbox.next('input[type="hidden"]'); // Do the actual POSTing from a hidden field
 
 		if(e.target.nodeName != 'INPUT') // Let the browser do its thing
 		    checkbox.attr('checked', !checkbox.attr('checked'));

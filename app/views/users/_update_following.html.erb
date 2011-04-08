@@ -1,5 +1,4 @@
 <div id="update-following">
-<!-- <p>You are following <strong><%= @current_user.following.count %></strong> users. -->
   <div id="under-head">
     <a class="next-page" href="" data-page="next"><%=t :next_page %> &raquo;</a>
     <a class="last-page" href="" data-page="last">&laquo; <%=t :last_page %></a></div>
@@ -9,5 +8,7 @@
         <%= render :partial => 'users/user', :collection => @twitter_users %>
       <br class="clear" />
     </div> <!-- /page-container -->
+<br style="clear:both;" />
 </div> <!-- /update-following -->
 </form>
+<p id="follow-count"><%= raw t(:showing, :some => content_tag(:span, CONFIG['twitter_users_per_page']), :total => content_tag(:span, @twitter_users.count)) %></p> 

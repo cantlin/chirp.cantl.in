@@ -1,13 +1,12 @@
 en:
   site_name: chirp.cantl.in
+
+  intro: Hello, this is a sample application by %{author_link} for unfollowing people on %{twitter_link}. The source is on %{github_link}.
   login_submit: Sign in with Twitter
+  last_visit: Hello, %{user_link}. Your last visit was %{time} ago.
   log_out: Log out
-  last_visit: Your last visit was
-  ago: ago
-  greeting: Hello,
 
   error_unexpected: Sorry, something really unexpected happened.
-  error_authorising: Sorry, there was a problem authenticating your session. Please try again.
   twitter_unresponsive: Sorry, Twitter doesn't seem to be responding. Please wait a second and try again.
   empty_search: Sorry, no results matched your query.
 
@@ -21,3 +20,4 @@ en:
   last_page: Last page
   you_unfollowed: Good riddance! You unfollowed
   you_followed: Hurrah! You followed
+  showing: Showing %{some} of %{total}

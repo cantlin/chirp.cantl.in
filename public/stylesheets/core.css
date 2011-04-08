@@ -307,3 +307,12 @@ a.last-page {
 #head h2 {
     float:left;
 }
+#follow-count {
+    font-size:0.9em;
+    color:#999;
+    padding-top:20px;
+    float:right;
+}
+#follow-count span {
+    font-weight:bold;
+}

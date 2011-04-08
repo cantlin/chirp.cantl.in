@@ -43,23 +43,19 @@ class User < ActiveRecord::Base
     self.following = value
   end
 
-  def unfollow(screen_name)
-    if(screen_name.is_a? Array)
-      screen_name.each {|u| unfollow u }
-    else
-      twitter_request_authenticated('unfollow', {:screen_name => screen_name}, 'post')
+  def unfollow(names)
+    names.each do |name|
+      twitter_request_authenticated('unfollow', {:screen_name => name}, 'post')
     end
     if Rails.cache.exist? "following/#{id}"
-      updated_cache = (Rails.cache.fetch "following/#{id}").reject {|u| u[:screen_name] == screen_name}
+      updated_cache = (Rails.cache.fetch "following/#{id}").reject {|u| names.include? u[:screen_name]}
       Rails.cache.write("following/#{id}", updated_cache)
     end
   end
 
-  def follow(screen_name)
-    if(screen_name.is_a? Array)
-      screen_name.each {|u| follow u }
-    else
-      twitter_request_authenticated('follow', {:screen_name => screen_name}, 'post')
+  def follow(names)
+    names.each do |name|
+      twitter_request_authenticated('follow', {:screen_name => name}, 'post')
     end
     Rails.cache.delete "following/#{id}"
   end

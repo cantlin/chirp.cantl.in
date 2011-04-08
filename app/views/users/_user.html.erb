@@ -16,7 +16,7 @@ end -%>
     <input type="hidden" value="<%= user[:screen_name] %>" data-name="<% if !user[:following].nil? %>unfollow<% else %>follow<% end %>[]" />
    <% if !user[:status].nil? -%>
      <p class="tweet">
-       "<%= truncate(user[:status], :length => 115) %>"
+       "<%= raw truncate(user[:status], :length => 115) %>"
      </p>
   <% end -%>
   </div>
