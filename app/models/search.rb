@@ -8,8 +8,7 @@ class Search < ActiveRecord::Base
       { :screen_name => user['from_user'],
         :image => user['profile_image_url'],
         :status => user['text'],
-        :following => (!current_user.nil? && current_user.following.any? {|hash| hash[:screen_name] == user['from_user']}) ? 1 : nil
-      }
+        :following => (!current_user.nil? && current_user.following.any? {|h| h[:screen_name] == user['from_user']}) ? 1 : nil }
     end
   end
 

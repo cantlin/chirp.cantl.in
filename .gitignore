@@ -6,4 +6,6 @@ tmp/
 doc/
 *~
 *.swp
+#*#
+.#*
 .DS_Store

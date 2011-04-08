@@ -5,8 +5,7 @@ module RequestsHelper
       CONFIG['twitter_consumer_key'],
       CONFIG['twitter_consumer_secret'], {
         :site => CONFIG['twitter_request_uri'],
-        :authorize_path => CONFIG['twitter_oauth_endpoint']
-      }
+        :authorize_path => CONFIG['twitter_oauth_endpoint'] }
     )
   end
 

@@ -9,7 +9,7 @@ $(document).ready(function() {
 		    return;
 
 		checkbox = $(this).find(':checkbox').first();
-		hiddenField = checkbox.next('input[type="hidden"]'); // Do the actual POSTing from a hidden field
+		hiddenField = $('input[type="hidden"]'); // Do the actual POSTing from a hidden field
 
 		if(e.target.nodeName != 'INPUT') // Let the browser do its thing
 		    checkbox.attr('checked', !checkbox.attr('checked'));
@@ -76,10 +76,11 @@ function setDirty(control) {
     if(keyVal == initVal) {
 	control.removeAttr('data-dirty');
 	return false;
-    } else {
+    } else
 	control.attr('data-dirty', 'true');
-	return true;
-    }
+
+    return true;
+
 };
 
 function isDirty(form) {
@@ -100,29 +101,4 @@ function refreshPagination(pageNum, pagesTotal) {
     var linkLast = $('a[data-page="last"]');
     (pageNum >= pagesTotal) ? linkNext.addClass('disabled') : linkNext.removeClass('disabled');
     (pageNum <= 1) ? linkLast.addClass('disabled') : linkLast.removeClass('disabled');
-}
-
-// Redundant/legacy
-
-function formModified(form) {
-    var formIsModified = false;
-    form.find('input[type="checkbox"]').each(function() {
-	    if(!$(this).attr('checked')) {
-		formIsModified = true;
-	        return false; // break
-	    }
-    });
-    return formIsModified;
-}
-
-function refreshVisibility(ele, page) {
-    var resultsPerPage = 20;
-    var visibleIndexStart = page * resultsPerPage;
-    var visibleIndexEnd = visibleIndexStart + resultsPerPage;
-    ele.each(function() {
-	    eleIndex = ($(this).index() - 1); // no idea why this is necessary
-	    ((eleIndex > visibleIndexStart) && (eleIndex <= visibleIndexEnd)) ? $(this).hide() : $(this).fadeIn('fast');
-    });
-    (page < 1) ? $('a[data-page="last"]').hide() : $('a[data-page="last"]').show();
-    (visibleIndexEnd > ele.size()) ? $('a[data-page="next"]').hide() : $('a[data-page="next"]').show();
 }
