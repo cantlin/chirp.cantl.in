@@ -2,14 +2,8 @@ class User < ActiveRecord::Base
   include RequestsHelper
   attr_accessible :access_token, :access_token_secret
 
-  validates :access_token,
-    :presence => true,
-    :uniqueness => true,
-    :length => {:minimum => 32, :maximum => 64}
-  validates :access_token_secret,
-    :presence => true,
-    :uniqueness => true,
-    :length => {:minimum => 32, :maximum => 64}
+  validates :access_token, :presence => true
+  validates :access_token_secret, :presence => true
 
   before_save :set_salt, :set_last_login
 
@@ -28,7 +22,7 @@ class User < ActiveRecord::Base
       until cursor == 0
         result = parse_body twitter_request_authenticated('get_following', {:cursor => cursor})
 
-        twitter_users << result['users'].map do |user|              
+        twitter_users.concat result['users'].map do |user|              
           { :twitter_id => user['id'],
             :screen_name => user['screen_name'],
             :name => user['name'],
@@ -41,7 +35,7 @@ class User < ActiveRecord::Base
         cursor = result['next_cursor']
       end
 
-      twitter_users.flatten 1
+      twitter_users
     end
   end
 
