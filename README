@@ -1,10 +1,1 @@
-There are a few of things to fix still:
-
-  * JSON::ParseErrors are not handled (if Twitter goes down, so do we)
-  * Users following more than a hundred people won't see them all
-  * Users followed by the current user show up as unfollowed in search results
-
-Some things probably won't get fixed:
-
-  * Tests!
-  * Vomit inducing hack for "dismissed" notifications
+http://chirp.cantl.in
