@@ -7,8 +7,9 @@ en:
   greeting: Hello,
 
   error_unexpected: Sorry, something really unexpected happened.
-  error_auth: Sorry, there was a problem authenticating your session. Please try again.
-  error_page_title: Error
+  error_authorising: Sorry, there was a problem authenticating your session. Please try again.
+  twitter_unresponsive: Sorry, Twitter doesn't seem to be responding. Please wait a second and try again.
+  empty_search: Sorry, no results matched your query.
 
   new_session_advice: Welcome. Go ahead and uncheck the boxes of users you no longer wish to follow.
   dismiss_this: %{link} this.

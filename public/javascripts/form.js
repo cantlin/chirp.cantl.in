@@ -4,11 +4,14 @@ $(document).ready(function() {
 
 	$('.checkbox-control', form).click(function(e) {
 		var checkbox, hiddenField;
+		
+		if(e.target.nodeName == 'A')
+		    return;
 
 		checkbox = $(this).find(':checkbox').first();
 		hiddenField = checkbox.next('input[type="hidden"]'); // Do the actual POSTing from a hidden field
 
-		if(e.target.nodeName != 'INPUT') // Let the browser deal with it if they click on the checkbox directly
+		if(e.target.nodeName != 'INPUT') // Let the browser do its thing
 		    checkbox.attr('checked', !checkbox.attr('checked'));
 		
 		if(!checkbox.attr('checked'))

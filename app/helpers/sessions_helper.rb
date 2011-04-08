@@ -19,8 +19,14 @@ module SessionsHelper
   end
 
   def authenticate
-    @current_user = current_user
-    redirect_to login_path unless (@current_user && @current_user.save)
+    unless current_user
+      sign_out if signed_in?
+      redirect_to login_path
+    end
+  end
+
+  def update_last_login
+    @current_user.save if @current_user
   end
 
 end

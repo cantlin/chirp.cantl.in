@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new]
   before_filter :authorize, :except => [:new, :show]
   rescue_from OAuth::Unauthorized, :with => :retry
+  rescue_from RequestsHelper::RequestError, :with => :render_request_error
 
   def new
     token, secret = access_token_from_request_token
@@ -21,8 +22,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_id params[:id]
 
-    params[:follow].each {|name| @user.follow name} if params[:follow]
-    params[:unfollow].each {|name| @user.unfollow name} if params[:unfollow]
+    @user.follow params[:follow] if params[:follow]
+    @user.unfollow params[:unfollow] if params[:unfollow]
 
     @twitter_users = @user.following
     render 'edit'

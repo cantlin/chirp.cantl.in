@@ -1,4 +1,8 @@
 <% content_for :header do -%>
   <div id="save"><%= link_to t(:save), '', 'data-submit' => 'update-following-form' %></div>
 <% end -%>
-<%= render :partial => 'users/update_following' %>
+<% if @twitter_users.empty? %>
+  <%=t :empty_search %>
+<% else %>
+  <%= render :partial => 'users/update_following' %>
+<% end %>

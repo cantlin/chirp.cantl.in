@@ -18,17 +18,25 @@ module RequestsHelper
   end
 
   def search_twitter_for(string)
-    uri = URI.parse "#{CONFIG['twitter_search_uri']}#{CONFIG['twitter_method_paths']['search']}?q=#{URI.encode string}"
+    uri = URI.parse "#{CONFIG['twitter_search_uri']}#{CONFIG['twitter_method_paths']['search']}&q=#{URI.encode string}"
     response = Net::HTTP.get_response(uri)
+    raise RequestError unless response.is_a? Net::HTTPSuccess
     (parse_body response)['results']
   end
 
   def parse_body(result)
     begin
-      JSON.parse(result.body)
-    rescue Exception => e
-      # Do something
+      JSON.parse result.body
+    rescue JSON::ParserError
+      raise RequestError
     end
+  end
+
+  class RequestError < StandardError; end
+
+  def render_request_error(exception)
+    logger.warn exception
+    render 'shared/request_error'
   end
 
 end

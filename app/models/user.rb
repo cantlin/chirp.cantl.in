@@ -22,17 +22,26 @@ class User < ActiveRecord::Base
   end
 
   def following(cursor = -1)
-    Rails.cache.fetch("following/#{id}", :expires_in => 1.hour) do
-      result = twitter_request_authenticated('get_following', {:cursor => cursor})
-      parse_body(result)['users'].map do |user|              
-        { :twitter_id => user['id'],
-          :screen_name => user['screen_name'],
-          :name => user['name'],
-          :image => user['profile_image_url'],
-          :location => user['location'],
-          :following => 1,
-          :status => user['status'] ? user['status']['text'] : nil }
+    Rails.cache.fetch("following/#{id}", :expires_in => 15.minutes) do
+      twitter_users = []
+
+      until cursor == 0
+        result = parse_body twitter_request_authenticated('get_following', {:cursor => cursor})
+
+        twitter_users << result['users'].map do |user|              
+          { :twitter_id => user['id'],
+            :screen_name => user['screen_name'],
+            :name => user['name'],
+            :image => user['profile_image_url'],
+            :location => user['location'],
+            :following => 1,
+            :status => user['status'] ? user['status']['text'] : nil }
+        end
+
+        cursor = result['next_cursor']
       end
+
+      twitter_users.flatten 1
     end
   end
 
@@ -46,7 +55,10 @@ class User < ActiveRecord::Base
     else
       twitter_request_authenticated('unfollow', {:screen_name => screen_name}, 'post')
     end
-    Rails.cache.delete "following/#{id}"
+    if Rails.cache.exist? "following/#{id}"
+      updated_cache = (Rails.cache.fetch "following/#{id}").reject {|u| u[:screen_name] == screen_name}
+      Rails.cache.write("following/#{id}", updated_cache)
+    end
   end
 
   def follow(screen_name)
@@ -81,11 +93,7 @@ class User < ActiveRecord::Base
   def twitter_request_authenticated(method_key, params = {}, method = 'get')
     @access_token ||= OAuth::AccessToken.new(oauth_consumer, self.access_token, self.access_token_secret)
     method_path = CONFIG['twitter_method_paths'][method_key] # See /config/app_config.yml
-    unless params.empty?
-      params.each_with_index {|param, i|
-        method_path += "#{(i == 0) ? '?' : '&'}#{param[0]}=#{param[1]}"
-      }
-    end
+    params.each_with_index {|param, i| method_path += "#{(i == 0) ? '?' : '&'}#{param[0]}=#{param[1]}"}
     @access_token.send(method, method_path)
   end
 

@@ -3,12 +3,12 @@ class Search < ActiveRecord::Base
   attr_accessible :query
   before_save :set_user_id
 
-  def results
+  def results(current_user = nil)
     (search_twitter_for query).map do |user|
       { :screen_name => user['from_user'],
         :image => user['profile_image_url'],
-        :status => user['text']
-      # :following => (@current_user && @current_user.following.find {|a| a.value? user['from_user_id']}) ? 1 : nil
+        :status => user['text'],
+        :following => (!current_user.nil? && current_user.following.any? {|hash| hash[:screen_name] == user['from_user']}) ? 1 : nil
       }
     end
   end
