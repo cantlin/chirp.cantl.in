@@ -8,6 +8,7 @@ gem 'oauth'
 require 'oauth/consumer'
 gem 'memcache-client'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'json'
 
 group :development do
   gem 'rspec-rails', '2.5.0'

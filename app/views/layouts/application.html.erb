@@ -18,7 +18,7 @@
       <% if @current_user -%>
         <%= form_tag search_path, :id => 'search' -%>
           <input type="text" name="query" value="<%= params[:query] %>" />
-          <input type="submit" name="submit-search" value="Search" />
+          <input type="submit" name="submit-search" value="<%=t :search_submit %>" />
         </form>
         <%= render 'users/current_user' %>
       <% end -%>

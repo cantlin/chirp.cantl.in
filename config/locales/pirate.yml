@@ -3,5 +3,5 @@ pirate:
 
   login_submit: Shiver me Twimbers!
 
-  error_unexpected: Yarr matey, this application's going down faster than Whitney Houston on a line of coke.
-  error_auth: Might be you missed the sign said "NO LANDLUBBERS!"
+  error_unexpected: Yarr matey, she's goin' down!
+  error_auth: Might be you missed the sign that said "NO LANDLUBBERS!"

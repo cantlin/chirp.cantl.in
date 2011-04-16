@@ -20,4 +20,5 @@ en:
   last_page: Last page
   you_unfollowed: Good riddance! You unfollowed
   you_followed: Hurrah! You followed
+  search_submit: Search Tweets
   showing: Showing %{some} of %{total}
